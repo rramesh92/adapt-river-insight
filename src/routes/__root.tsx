@@ -93,6 +93,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Swift River — Adaptive Clinical Simulation Engine" },
+      { name: "description", content: "AI-powered adaptive simulation engine personalizes nursing education scenarios in real-time." },
+      { property: "og:description", content: "AI-powered adaptive simulation engine personalizes nursing education scenarios in real-time." },
+      { name: "twitter:description", content: "AI-powered adaptive simulation engine personalizes nursing education scenarios in real-time." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7cf5af57-97b3-490c-a0da-3e47cb69ed63/id-preview-7a5feef0--23dde9ca-e1e4-46ba-9ef1-c546b1304d5c.lovable.app-1782877416250.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7cf5af57-97b3-490c-a0da-3e47cb69ed63/id-preview-7a5feef0--23dde9ca-e1e4-46ba-9ef1-c546b1304d5c.lovable.app-1782877416250.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
