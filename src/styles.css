@@ -240,3 +240,9 @@
 @source inline("bg-{info,primary,ai,success,warning,critical}-muted");
 @source inline("text-{info,primary,ai,success,critical}");
 @source inline("text-warning-foreground");
+
+/* Comprehensive tone safelist for dynamically-composed status classes. */
+@source inline("{bg,text,border}-{success,warning,critical,info,ai,primary,secondary,muted}");
+@source inline("{bg,text}-{success,warning,critical,info,ai,primary}-{muted,foreground}");
+@source inline("border-{success,warning,critical,info,ai,primary}/{15,20,25,30,40}");
+@source inline("text-{success,warning,critical,info,ai,primary}");
