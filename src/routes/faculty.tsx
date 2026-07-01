@@ -1,18 +1,8 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { createFileRoute } from "@tanstack/react-router";
 import {
   Users,
   AlertTriangle,
-  Sparkles,
   ArrowRight,
   X,
   Clock,
@@ -22,6 +12,7 @@ import {
   ChevronRight,
   CheckCircle2,
   Copy,
+  BarChart3,
 } from "lucide-react";
 
 import { AppLayout } from "@/components/prototype/AppLayout";
