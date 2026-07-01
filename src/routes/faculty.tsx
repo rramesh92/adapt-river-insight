@@ -58,7 +58,7 @@ function FacultyDashboard() {
             <h1 className="text-2xl font-bold">Faculty Dashboard</h1>
           </div>
           <Button variant="outline" className="gap-2" onClick={() => toast.info("Comparing Section A vs Section B")}>
-            <BarChart className="h-4 w-4" /> Compare sections
+            <BarChart3 className="h-4 w-4" /> Compare sections
           </Button>
         </div>
 
