@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StudentRouteImport } from './routes/student'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as DebriefRouteImport } from './routes/debrief'
@@ -21,6 +22,11 @@ import { Route as StudentSimulationRouteImport } from './routes/student.simulati
 const StudentRoute = StudentRouteImport.update({
   id: '/student',
   path: '/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/debrief': typeof DebriefRoute
   '/faculty': typeof FacultyRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/debrief': typeof DebriefRoute
   '/faculty': typeof FacultyRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/debrief': typeof DebriefRoute
   '/faculty': typeof FacultyRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/debrief'
     | '/faculty'
     | '/settings'
+    | '/sitemap.xml'
     | '/student'
     | '/student/simulation'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/debrief'
     | '/faculty'
     | '/settings'
+    | '/sitemap.xml'
     | '/student'
     | '/student/simulation'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/debrief'
     | '/faculty'
     | '/settings'
+    | '/sitemap.xml'
     | '/student'
     | '/student/simulation'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   DebriefRoute: typeof DebriefRoute
   FacultyRoute: typeof FacultyRoute
   SettingsRoute: typeof SettingsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudentRoute: typeof StudentRouteWithChildren
 }
 
@@ -140,6 +153,13 @@ declare module '@tanstack/react-router' {
       path: '/student'
       fullPath: '/student'
       preLoaderRoute: typeof StudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -212,6 +232,7 @@ const rootRouteChildren: RootRouteChildren = {
   DebriefRoute: DebriefRoute,
   FacultyRoute: FacultyRoute,
   SettingsRoute: SettingsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudentRoute: StudentRouteWithChildren,
 }
 export const routeTree = rootRouteImport
