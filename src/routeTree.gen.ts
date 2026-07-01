@@ -17,6 +17,7 @@ import { Route as DebriefRouteImport } from './routes/debrief'
 import { Route as AuthorRouteImport } from './routes/author'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StudentIndexRouteImport } from './routes/student.index'
 import { Route as StudentSimulationRouteImport } from './routes/student.simulation'
 
 const StudentRoute = StudentRouteImport.update({
@@ -59,6 +60,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentIndexRoute = StudentIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => StudentRoute,
+} as any)
 const StudentSimulationRoute = StudentSimulationRouteImport.update({
   id: '/simulation',
   path: '/simulation',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
+  '/student/': typeof StudentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -84,8 +91,8 @@ export interface FileRoutesByTo {
   '/faculty': typeof FacultyRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
+  '/student': typeof StudentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +105,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
+  '/student/': typeof StudentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +119,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/student'
     | '/student/simulation'
+    | '/student/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -120,8 +129,8 @@ export interface FileRouteTypes {
     | '/faculty'
     | '/settings'
     | '/sitemap.xml'
-    | '/student'
     | '/student/simulation'
+    | '/student'
   id:
     | '__root__'
     | '/'
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/student'
     | '/student/simulation'
+    | '/student/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -204,6 +214,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student/': {
+      id: '/student/'
+      path: '/'
+      fullPath: '/student/'
+      preLoaderRoute: typeof StudentIndexRouteImport
+      parentRoute: typeof StudentRoute
+    }
     '/student/simulation': {
       id: '/student/simulation'
       path: '/simulation'
@@ -216,10 +233,12 @@ declare module '@tanstack/react-router' {
 
 interface StudentRouteChildren {
   StudentSimulationRoute: typeof StudentSimulationRoute
+  StudentIndexRoute: typeof StudentIndexRoute
 }
 
 const StudentRouteChildren: StudentRouteChildren = {
   StudentSimulationRoute: StudentSimulationRoute,
+  StudentIndexRoute: StudentIndexRoute,
 }
 
 const StudentRouteWithChildren =
