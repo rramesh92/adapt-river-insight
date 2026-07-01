@@ -235,3 +235,8 @@
     linear-gradient(90deg, oklch(1 0 0 / 0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
+
+/* Safelist dynamically-composed tone utilities used across role cards. */
+@source inline("bg-{info,primary,ai,success,warning,critical}-muted");
+@source inline("text-{info,primary,ai,success,critical}");
+@source inline("text-warning-foreground");
