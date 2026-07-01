@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as FacultyRouteImport } from './routes/faculty'
+import { Route as AuthorRouteImport } from './routes/author'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StudentSimulationRouteImport } from './routes/student.simulation'
@@ -23,6 +24,11 @@ const StudentRoute = StudentRouteImport.update({
 const FacultyRoute = FacultyRouteImport.update({
   id: '/faculty',
   path: '/faculty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthorRoute = AuthorRouteImport.update({
+  id: '/author',
+  path: '/author',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -44,6 +50,7 @@ const StudentSimulationRoute = StudentSimulationRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/author': typeof AuthorRoute
   '/faculty': typeof FacultyRoute
   '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/author': typeof AuthorRoute
   '/faculty': typeof FacultyRoute
   '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
@@ -59,19 +67,33 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/author': typeof AuthorRoute
   '/faculty': typeof FacultyRoute
   '/student': typeof StudentRouteWithChildren
   '/student/simulation': typeof StudentSimulationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/faculty' | '/student' | '/student/simulation'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/author'
+    | '/faculty'
+    | '/student'
+    | '/student/simulation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/faculty' | '/student' | '/student/simulation'
+  to:
+    | '/'
+    | '/admin'
+    | '/author'
+    | '/faculty'
+    | '/student'
+    | '/student/simulation'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/author'
     | '/faculty'
     | '/student'
     | '/student/simulation'
@@ -80,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  AuthorRoute: typeof AuthorRoute
   FacultyRoute: typeof FacultyRoute
   StudentRoute: typeof StudentRouteWithChildren
 }
@@ -98,6 +121,13 @@ declare module '@tanstack/react-router' {
       path: '/faculty'
       fullPath: '/faculty'
       preLoaderRoute: typeof FacultyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/author': {
+      id: '/author'
+      path: '/author'
+      fullPath: '/author'
+      preLoaderRoute: typeof AuthorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -138,6 +168,7 @@ const StudentRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  AuthorRoute: AuthorRoute,
   FacultyRoute: FacultyRoute,
   StudentRoute: StudentRouteWithChildren,
 }
